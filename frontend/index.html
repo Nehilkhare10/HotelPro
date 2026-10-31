@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HotelPro — Hotel Management System</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">🏨 HotelPro</div>
+  <nav id="nav" class="nav hidden">
+    <button data-view="dashboard" class="nav-btn active">Dashboard</button>
+    <button data-view="rooms" class="nav-btn">Rooms</button>
+    <button data-view="guests" class="nav-btn">Guests</button>
+    <button data-view="bookings" class="nav-btn">Bookings</button>
+    <button data-view="payments" class="nav-btn">Payments</button>
+  </nav>
+  <div id="userBox" class="user-box hidden">
+    <span id="userName"></span>
+    <button id="logoutBtn" class="btn-ghost">Logout</button>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- AUTH VIEW -->
+  <section id="view-auth" class="view">
+    <div class="auth-card">
+      <h1>Welcome to HotelPro</h1>
+      <p class="muted">Secure, scalable hotel operations — bookings, guests &amp; payments in one place.</p>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="register">Register</button>
+      </div>
+
+      <form id="loginForm" class="form">
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button type="submit" class="btn-primary">Login</button>
+        <p class="hint">Demo: admin@hotelpro.com / admin123 (after you register once)</p>
+      </form>
+
+      <form id="registerForm" class="form hidden">
+        <input type="text" id="regName" placeholder="Full name" required />
+        <input type="email" id="regEmail" placeholder="Email" required />
+        <input type="password" id="regPassword" placeholder="Password" required />
+        <select id="regRole">
+          <option value="staff">Staff</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit" class="btn-primary">Create account</button>
+      </form>
+
+      <p id="authMsg" class="msg"></p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD VIEW -->
+  <section id="view-dashboard" class="view hidden">
+    <h2>Dashboard</h2>
+    <div class="stats">
+      <div class="stat-card"><span id="statRooms">0</span><label>Total Rooms</label></div>
+      <div class="stat-card"><span id="statAvailable">0</span><label>Available</label></div>
+      <div class="stat-card"><span id="statOccupied">0</span><label>Occupied</label></div>
+      <div class="stat-card"><span id="statBookings">0</span><label>Active Bookings</label></div>
+      <div class="stat-card"><span id="statRevenue">₹0</span><label>Revenue Collected</label></div>
+    </div>
+  </section>
+
+  <!-- ROOMS VIEW -->
+  <section id="view-rooms" class="view hidden">
+    <div class="view-header">
+      <h2>Rooms</h2>
+      <button id="addRoomBtn" class="btn-primary">+ Add Room</button>
+    </div>
+    <form id="roomForm" class="inline-form hidden">
+      <input type="text" id="roomNumber" placeholder="Room number" required />
+      <input type="text" id="roomType" placeholder="Type (e.g. Deluxe)" required />
+      <input type="number" id="roomPrice" placeholder="Price/night" required />
+      <input type="number" id="roomCapacity" placeholder="Capacity" value="2" />
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+    <table class="table">
+      <thead><tr><th>Number</th><th>Type</th><th>Price/Night</th><th>Capacity</th><th>Status</th></tr></thead>
+      <tbody id="roomsTable"></tbody>
+    </table>
+  </section>
+
+  <!-- GUESTS VIEW -->
+  <section id="view-guests" class="view hidden">
+    <div class="view-header">
+      <h2>Guests</h2>
+      <button id="addGuestBtn" class="btn-primary">+ Add Guest</button>
+    </div>
+    <form id="guestForm" class="inline-form hidden">
+      <input type="text" id="guestName" placeholder="Full name" required />
+      <input type="text" id="guestPhone" placeholder="Phone" required />
+      <input type="email" id="guestEmail" placeholder="Email (optional)" />
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+    <table class="table">
+      <thead><tr><th>Name</th><th>Phone</th><th>Email</th></tr></thead>
+      <tbody id="guestsTable"></tbody>
+    </table>
+  </section>
+
+  <!-- BOOKINGS VIEW -->
+  <section id="view-bookings" class="view hidden">
+    <div class="view-header">
+      <h2>Bookings</h2>
+      <button id="addBookingBtn" class="btn-primary">+ New Booking</button>
+    </div>
+    <form id="bookingForm" class="inline-form hidden">
+      <select id="bookingGuest" required></select>
+      <select id="bookingRoom" required></select>
+      <input type="date" id="bookingCheckIn" required />
+      <input type="date" id="bookingCheckOut" required />
+      <button type="submit" class="btn-primary">Book</button>
+    </form>
+    <table class="table">
+      <thead><tr><th>Guest</th><th>Room</th><th>Check-in</th><th>Check-out</th><th>Total</th><th>Status</th><th>Payment</th><th>Actions</th></tr></thead>
+      <tbody id="bookingsTable"></tbody>
+    </table>
+  </section>
+
+  <!-- PAYMENTS VIEW -->
+  <section id="view-payments" class="view hidden">
+    <h2>Payments</h2>
+    <table class="table">
+      <thead><tr><th>Txn Ref</th><th>Booking</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+      <tbody id="paymentsTable"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

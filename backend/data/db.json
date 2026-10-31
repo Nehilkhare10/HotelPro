@@ -1,0 +1,11 @@
+{
+  "users": [],
+  "rooms": [
+    { "id": "room-101", "number": "101", "type": "Deluxe", "pricePerNight": 2500, "capacity": 2, "status": "available", "createdAt": "2026-01-01T00:00:00.000Z" },
+    { "id": "room-102", "number": "102", "type": "Standard", "pricePerNight": 1500, "capacity": 2, "status": "available", "createdAt": "2026-01-01T00:00:00.000Z" },
+    { "id": "room-201", "number": "201", "type": "Suite", "pricePerNight": 4500, "capacity": 4, "status": "available", "createdAt": "2026-01-01T00:00:00.000Z" }
+  ],
+  "guests": [],
+  "bookings": [],
+  "payments": []
+}
